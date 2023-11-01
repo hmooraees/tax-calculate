@@ -22,7 +22,6 @@
         <module>port</module>
         <module>usecase</module>
         <module>presenter</module>
-        <module>controller</module>
         <module>database</module>
     </modules>
 

@@ -10,12 +10,14 @@ import br.com.hmoraes.tax.calculate.port.usecase.CalculateProductPriceUseCase;
 import br.com.hmoraes.tax.calculate.usecase.mapper.ProductEntityMapper;
 import br.com.hmoraes.tax.calculate.usecase.enums.CategoryTaxEnum;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CalculateProductPriceUseCaseService implements CalculateProductPriceUseCase {
@@ -30,6 +32,8 @@ public class CalculateProductPriceUseCaseService implements CalculateProductPric
 
     @Override
     public void execute(ProductInbound inbound) {
+        log.info("class=CalculateProductPriceUseCaseService method=execute step=start object={}", inbound);
+
         Product entity = this.mapper.toEntity(inbound);
 
         Product product = this.productGateway.findByName(entity.getName())
@@ -48,7 +52,8 @@ public class CalculateProductPriceUseCaseService implements CalculateProductPric
                             .build();
                 });
 
-        product.setTaxPrice(this.calculateTaxPrice(product.getCategoryId(), product.getBasePrice()));
+        product.setBasePrice(entity.getBasePrice());
+        product.setTaxPrice(this.calculateTaxPrice(product.getCategoryId(), entity.getBasePrice()));
 
         Product response = this.productGateway.save(product);
 
@@ -57,6 +62,8 @@ public class CalculateProductPriceUseCaseService implements CalculateProductPric
         ProductOutbound outbound = this.mapper.toOutbound(response);
 
         this.presenter.present(outbound);
+
+        log.info("class=CalculateProductPriceUseCaseService method=execute step=end object={}", outbound);
     }
 
     private Double calculateTaxPrice(Long categoryId, Double basePrice) {

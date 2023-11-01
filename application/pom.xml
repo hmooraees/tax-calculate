@@ -12,12 +12,6 @@
     <artifactId>application</artifactId>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>br.com.hmoraes</groupId>-->
-<!--            <artifactId>controller</artifactId>-->
-<!--            <version>${revision}</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>br.com.hmoraes</groupId>
             <artifactId>port</artifactId>

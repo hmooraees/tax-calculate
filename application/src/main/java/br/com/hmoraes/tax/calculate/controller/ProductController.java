@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/v1/api/products")
+@RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -34,11 +34,15 @@ public class ProductController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<ProductResponse> execute(@Valid @RequestBody ProductRequest request) {
 
+        log.info("class=ProductController method=execute step=start object={}", request);
+
         ProductInbound inbound = this.mapper.toInBound(request);
 
         this.useCase.execute(inbound);
 
         ProductResponse response = this.mapper.toResponse(this.presenter.getView());
+
+        log.info("class=ProductController method=execute step=end object={}", response);
 
         return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(response);
 

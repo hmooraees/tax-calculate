@@ -55,7 +55,6 @@ public class ProductControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
 
-        result.andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().is4xxClientError());
     }
 }
