@@ -25,8 +25,8 @@
 
 ## Detalhes da Solução
 
-#### O projeto principal foi modularizado em sub projetos. Cada sub modulo possui suas depenências necessárias e as dependências do projeto principal.
-- Módulo **application**: Possui a classe principal de execução do projeto e as classes de configuração dos **beans** iniciais (não foi necessário nesse caso). Também possui os controles de entrada para aplicação (os endponits) onde centraliza todas as chamadas externas.
+#### O projeto principal foi modularizado em sub projetos. Cada sub modulo possui suas dependências necessárias e as dependências do projeto principal.
+- Módulo **application**: Possui a classe principal de execução do projeto e as classes de configuração dos **beans** iniciais (não foi necessário nesse caso). Também possui os controles de entrada para aplicação (endpoints) onde centraliza todas as chamadas externas.
 - Módulo **database**: Responsável pela gerenciamento, comunicação e iteração com o banco de dados.
 - Módulo **entity**: Centraliza todas as endidades da aplicação.
 - Módulo **port**: Possui todas as portas de entrada e saída da aplicação para a camada de negócio, tanto dos controllers como do database.
@@ -76,7 +76,7 @@ Observações: Os impostos por cada tipo de categoria está mapeado dentro da ap
 
 ![img03.JPG](doc%2Fimg03.JPG)
 
-6. Este projeto utiliza Lombok, caso aparece uma janela pedindo para habilitar, clique em **Sim**
+6. Este projeto utiliza Lombok, caso apareça uma janela pedindo para habilitar, clique em **Enable**
 
 ![img04.JPG](doc%2Fimg04.JPG)
 
